@@ -8,7 +8,7 @@ let imagesLoaded = 0;
 let totalImages = 0;
 let photosArray = [];
 
-// API para conectar con unsplash.com
+// Datos para la API para conectar con unsplash.com
 const count = 30;
 const apiKey = "uImVW0oqK2ZVcNjm8Gs3X5IcdNCzF8tj1pCxCPaPMHU";
 const apiURL = `https://api.unsplash.com/photos/random/?client_id=${apiKey}&count=${count}`;
@@ -26,7 +26,8 @@ function imageLoaded() {
  * Aunque me parece un poco excesivo, a fin de aplicar DRY
  * (don't repeat yourself) voy a definir una función para añadir
  * los atributos. (He dejado comentados y muy indentadas las 
- * líneas originales que voy a dejar de repetir)
+ * líneas originales que voy a dejar de repetir para que se vea lo
+ * que no repetimos)
  * ************************************************************/
 function setAttributes(element, attributes) {
     for (const key in attributes) {
@@ -37,7 +38,6 @@ function setAttributes(element, attributes) {
 //Creamos elementos html para los links y las fotos
 function displayPhotos() {
     totalImages = photosArray.length;
-    console.log("var totalImages:", totalImages);
     //Para cada objeto en photosArray
     photosArray.forEach((photo)=>{
         //Creamos un <a> por cada foto, para enlazar con la imagen en unsplash.com
@@ -78,8 +78,8 @@ async function getPhotos() {
 }
 
 /*******************************************************
- * Cada vez que hacemos scroll comprueba si estamos cerca del final de la página, teniendo
- * ya todas las imágenes cargadas (ready). Si es así, llama a getPhotos (carga 30 imágenes más)
+ * Cada vez que hacemos scroll comprueba si estamos cerca del final de la página, y también, si
+ * están ya todas las imágenes cargadas (ready). Si es así, llama a getPhotos (carga 30 imágenes más)
 ********************************************************/ 
 window.addEventListener("scroll", () => {
     if (window.innerHeight + window.scrollY >= document.body.offsetHeight && ready) {
